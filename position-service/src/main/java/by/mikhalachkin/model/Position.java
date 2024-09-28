@@ -20,4 +20,3 @@ public class Position {
   @Column(name = "position_name", nullable = false)
   private String positionName;
 }
-
