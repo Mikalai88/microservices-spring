@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: position-service
+          uri: lb://POSITION-SERVICE
+          predicates:
+            - Path=/position/**
+          filters:
+            - AuthenticationFilter
+
+        - id: skill-service
+          uri: lb://SKILL-SERVICE
+          predicates:
+            - Path=/skill/**
+          filters:
+            - AuthenticationFilter
+
+        - id: identity-service
+          uri: lb://IDENTITY-SERVICE
+          predicates:
+            - Path=/auth/**
+
+  application:
+    name: GATEWAY-SERVICE
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
